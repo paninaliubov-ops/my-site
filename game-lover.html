@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAME LOVER — Будь той кто знает правила игры</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #D4688A;
+      --gold-light: #E89AB5;
+      --gold-dim: rgba(212,104,138,0.15);
+      --bg: #0A0A0A;
+      --bg2: #0F0F0F;
+      --bg3: #141414;
+      --white: #FFFFFF;
+      --muted: rgba(255,255,255,0.55);
+      --card-bg: rgba(255,255,255,0.04);
+      --card-border: rgba(255,255,255,0.08);
+      --gold-border: rgba(212,104,138,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+
+    .serif-italic { font-style: italic; }
+    .gold { color: var(--gold); }
+    .muted { color: var(--muted); }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 100px 0; }
+
+    /* ─── STAR FIELD (CSS only) ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,104,138,0.12) 0%, transparent 60%), var(--bg);
+    }
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .stars::before,
+    .stars::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 40% 8%, rgba(212,104,138,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 18%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 85% 45%, rgba(212,104,138,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 65%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 60% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 85%, rgba(212,104,138,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 48% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 20% 25%, rgba(212,104,138,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 65% 92%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 88% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 37% 95%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 72% 38%, rgba(212,104,138,0.5) 0%, transparent 100%);
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
+
+    .stars::after {
+      background-image:
+        radial-gradient(1px 1px at 18% 52%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 44% 22%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 58% 48%, rgba(212,104,138,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 82% 73%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 7% 38%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 88%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 33% 67%, rgba(212,104,138,0.4) 0%, transparent 100%),
+        radial-gradient(1px 1px at 62% 12%, rgba(255,255,255,0.5) 0%, transparent 100%);
+      animation-delay: 3s;
+      animation-duration: 8s;
+    }
+
+    @keyframes twinkle {
+      0%   { opacity: 0.4; }
+      50%  { opacity: 1; }
+      100% { opacity: 0.6; }
+    }
+
+    /* decorative lines */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+    }
+
+    /* ─── HERO CONTENT ─── */
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 40px 24px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 14vw, 11rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 40%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--gold-light);
+      margin-bottom: 28px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 52px;
+      line-height: 1.7;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      animation: float 2.5s ease-in-out infinite;
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--gold-border), transparent);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--gold) 0%, #B84E6E 100%);
+      color: #0A0A0A;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 18px 40px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .btn-gold:hover::before { opacity: 1; }
+    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212,104,138,0.35); }
+    .btn-gold:active { transform: translateY(0); }
+
+    .btn-gold span { position: relative; z-index: 1; }
+
+    /* ─── SECTION HEADERS ─── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.75;
+    }
+
+    .section-header { margin-bottom: 64px; }
+
+    /* ─── DIVIDER LINE ─── */
+    .gold-line {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 32px;
+    }
+
+    /* ─── PAIN SECTION ─── */
+    .pain-section { background: var(--bg2); }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .pain-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 36px 32px;
+      transition: border-color 0.25s, background 0.25s;
+      cursor: default;
+    }
+
+    .pain-card:hover {
+      border-color: var(--gold-border);
+      background: rgba(212,104,138,0.05);
+    }
+
+    .pain-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--gold-dim);
+      line-height: 1;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .pain-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .pain-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── MODULES ─── */
+    .modules-section { background: var(--bg); }
+
+    .modules-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .module-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+
+    .module-item:hover {
+      border-color: var(--gold-border);
+      background: rgba(212,104,138,0.03);
+    }
+
+    .module-num {
+      background: var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      padding: 28px 16px;
+      flex-shrink: 0;
+    }
+
+    .module-content {
+      padding: 28px 32px;
+    }
+
+    .module-content h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 6px;
+    }
+
+    .module-content h3 .module-name {
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+    }
+
+    .module-content p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── WHO IS IT FOR ─── */
+    .for-section { background: var(--bg2); }
+
+    .for-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+
+    .for-divider {
+      background: linear-gradient(to bottom, transparent, var(--gold-border), transparent);
+    }
+
+    .for-col {
+      padding: 48px 40px;
+    }
+
+    .for-col-left { text-align: right; }
+    .for-col-right { text-align: left; }
+
+    .for-col h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .for-col .for-subtitle {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .for-col-left .for-subtitle { color: var(--muted); }
+    .for-col-right .for-subtitle { color: var(--gold); }
+
+    .for-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .for-list li {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .for-col-left .for-list li { flex-direction: row-reverse; text-align: right; }
+
+    .for-list li .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    .for-col-right .for-list li .dot { background: var(--gold); }
+
+    .for-col-right .for-list li { color: rgba(255,255,255,0.8); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-section { background: var(--bg); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: border-color 0.25s;
+    }
+
+    .testimonial-card:hover { border-color: var(--gold-border); }
+
+    .stars-rating {
+      display: flex;
+      gap: 3px;
+    }
+
+    .star-icon {
+      width: 14px;
+      height: 14px;
+      fill: var(--gold);
+    }
+
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      flex: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .author-meta {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing-section {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212,104,138,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pricing-card {
+      max-width: 540px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 52px 48px;
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(10px);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: #0A0A0A;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .pricing-title {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .pricing-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 36px;
+      font-size: 1rem;
+    }
+
+    .pricing-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .pricing-currency {
+      font-size: 2rem;
+      vertical-align: top;
+      line-height: 1.2;
+      color: var(--gold);
+    }
+
+    .pricing-period {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pricing-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section { background: var(--bg); }
+
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item.open { border-color: var(--gold-border); }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px 28px;
+      text-align: left;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .faq-q:hover { background: var(--card-bg); }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s, background 0.2s;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      background: var(--gold-dim);
+    }
+
+    .faq-icon svg { width: 10px; height: 10px; }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+
+    .faq-item.open .faq-a { max-height: 300px; }
+
+    .faq-a-inner {
+      padding: 0 28px 24px;
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--card-border);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* ─── SCROLL ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .for-grid { grid-template-columns: 1fr; }
+      .for-divider { display: none; }
+      .for-col { padding: 32px 24px; text-align: left; }
+      .for-col-left .for-list li { flex-direction: row; text-align: left; }
+      .for-col-left { border-bottom: 1px solid var(--card-border); }
+    }
+
+    @media (max-width: 700px) {
+      section { padding: 72px 0; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .module-item { grid-template-columns: 56px 1fr; }
+      .module-num { font-size: 1.2rem; padding: 20px 12px; }
+      .module-content { padding: 20px 20px; }
+      .pricing-card { padding: 40px 28px; }
+      .pricing-price { font-size: 3rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; transition: none; }
+      .stars::before, .stars::after { animation: none; }
+      .scroll-hint { animation: none; }
+      .btn-gold:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════
+       HERO
+  ══════════════════════════════ -->
+  <section class="hero">
+    <div class="stars" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Мини-курс для женщин</div>
+
+      <h1 class="hero-title">GAME<br>LOVER</h1>
+
+      <p class="hero-tagline">Будь той кто знает правила игры</p>
+
+      <p class="hero-sub">
+        Курс для женщин которые хотят понимать мужчину<br>
+        глубже чем он понимает себя сам
+      </p>
+
+      <a href="#buy" class="btn-gold">
+        <span>Купить за 4 990 ₽</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-arrow"></div>
+      <span>далее</span>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       БОЛЬ
+  ══════════════════════════════ -->
+  <section class="pain-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="section-label">Узнаёшь себя?</p>
+        <h2 class="section-title">Что-то идёт<br><em class="serif-italic gold">не так</em></h2>
+        <p class="section-desc">Ты чувствуешь что между вами есть что-то важное — но не можешь это назвать.</p>
+      </div>
+
+      <div class="pain-grid">
+        <div class="pain-card fade-up">
+          <span class="pain-number" aria-hidden="true">01</span>
+          <h3>Он отдаляется — ты не понимаешь почему</h3>
+          <p>Всё вроде нормально. Но он где-то не здесь. В телефоне, в работе, в тишине.</p>
+        </div>
+        <div class="pain-card fade-up">
+          <span class="pain-number" aria-hidden="true">02</span>
+          <h3>Вы ссоритесь об одном и том же по кругу</h3>
+          <p>Один и тот же сценарий — каждый раз. Слова разные, суть та же.</p>
+        </div>
+        <div class="pain-card fade-up">
+          <span class="pain-number" aria-hidden="true">03</span>
+          <h3>Ты чувствуешь что стала предсказуемой</h3>
+          <p>Он знает как ты отреагируешь на всё. Интерес угасает — не к тебе, к динамике.</p>
+        </div>
+        <div class="pain-card fade-up">
+          <span class="pain-number" aria-hidden="true">04</span>
+          <h3>Притяжение есть, но электричество угасло</h3>
+          <p>Любовь осталась. А вот тот огонь, то напряжение — куда-то исчез.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       МОДУЛИ
+  ══════════════════════════════ -->
+  <section class="modules-section">
+    <div class="container">
+      <div class="section-header fade-up">
+        <p class="section-label">Программа</p>
+        <h2 class="section-title">7 модулей —<br><em class="serif-italic gold">полная карта его психики</em></h2>
+        <p class="section-desc">Каждый модуль — это уровень понимания. Ты идёшь от поверхности до самой глубины.</p>
+      </div>
+
+      <div class="modules-list">
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">1</div>
+          <div class="module-content">
+            <h3><span class="module-name">Как он устроен</span></h3>
+            <p>4 базовых драйвера которые объясняют всё его поведение. Статус, секс, покой, уважение — больше ничего нет.</p>
+          </div>
+        </div>
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">2</div>
+          <div class="module-content">
+            <h3><span class="module-name">Его скрытая боль</span></h3>
+            <p>Что стоит за каждым драйвером. Женщина которая видит эту боль — становится единственной.</p>
+          </div>
+        </div>
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">3</div>
+          <div class="module-content">
+            <h3><span class="module-name">Его тёмная сторона</span></h3>
+            <p>Компенсаторика и то чего он никогда не попросит сам. Туда куда большинство женщин боятся заходить.</p>
+          </div>
+        </div>
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">4</div>
+          <div class="module-content">
+            <h3><span class="module-name">Напряжение</span></h3>
+            <p>Как создавать притяжение осознанно и не гасить его. Разница между овечкой и игроком — здесь.</p>
+          </div>
+        </div>
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">5</div>
+          <div class="module-content">
+            <h3><span class="module-name">Секс как карта</span></h3>
+            <p>Что постель говорит про ваши отношения. Всё что происходит там — отражает всё что происходит везде.</p>
+          </div>
+        </div>
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">6</div>
+          <div class="module-content">
+            <h3><span class="module-name">Игра</span></h3>
+            <p>Ходы игрока которые меняют динамику. Та кто держит игру — держит всё.</p>
+          </div>
+        </div>
+        <div class="module-item fade-up">
+          <div class="module-num" aria-hidden="true">7</div>
+          <div class="module-content">
+            <h3><span class="module-name">Новая</span></h3>
+            <p>Финальные практики и твоя персональная карта игрока. Не конец — начало.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       ДЛЯ КОГО
+  ══════════════════════════════ -->
+  <section class="for-section">
+    <div class="container">
+      <div class="section-header fade-up" style="text-align:center;">
+        <p class="section-label">Для кого</p>
+        <h2 class="section-title">Ты уже выбрала<br><em class="serif-italic gold">кем быть</em></h2>
+      </div>
+
+      <div class="for-grid fade-up">
+        <div class="for-col for-col-left">
+          <h3>Овечка</h3>
+          <p class="for-subtitle">Устала ждать</p>
+          <ul class="for-list">
+            <li><span class="dot" aria-hidden="true"></span>Ждёт. Терпит. Надеется.</li>
+            <li><span class="dot" aria-hidden="true"></span>Всегда рядом — всегда доступна</li>
+            <li><span class="dot" aria-hidden="true"></span>Реагирует предсказуемо</li>
+            <li><span class="dot" aria-hidden="true"></span>Живёт его жизнью</li>
+            <li><span class="dot" aria-hidden="true"></span>Он ценит. Но не горит.</li>
+          </ul>
+        </div>
+
+        <div class="for-divider" aria-hidden="true"></div>
+
+        <div class="for-col for-col-right">
+          <h3 class="gold">Игрок</h3>
+          <p class="for-subtitle">Знает правила</p>
+          <ul class="for-list">
+            <li><span class="dot" aria-hidden="true"></span>Знает когда приблизиться и когда отойти</li>
+            <li><span class="dot" aria-hidden="true"></span>Создаёт динамику осознанно</li>
+            <li><span class="dot" aria-hidden="true"></span>Непредсказуема в малом</li>
+            <li><span class="dot" aria-hidden="true"></span>Живёт своей жизнью — это магнит</li>
+            <li><span class="dot" aria-hidden="true"></span>Он не может её забыть.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       ОТЗЫВЫ
+  ══════════════════════════════ -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header fade-up" style="text-align:center; margin-left:auto; margin-right:auto;">
+        <p class="section-label">Отзывы</p>
+        <h2 class="section-title">Что говорят<br><em class="serif-italic gold">те кто прошёл</em></h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="stars-rating" aria-label="5 звёзд">
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">«Я наконец поняла почему он уходит в тишину. Это не обо мне — это его покой. Одно это знание изменило всё. Он сам удивился что я перестала давить. Говорит что у нас появился воздух.»</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">А</div>
+            <div>
+              <div class="author-name">Алина, 31 год</div>
+              <div class="author-meta">В отношениях 4 года</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="stars-rating" aria-label="5 звёзд">
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">«Модуль про напряжение перевернул всё. Я всегда думала что быть доброй и доступной — это хорошо. А оказалось — это именно то что убивает интерес. Теперь я живу своей жизнью и он снова тянется.»</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">М</div>
+            <div>
+              <div class="author-name">Маша, 27 лет</div>
+              <div class="author-meta">Только начала новые отношения</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card fade-up">
+          <div class="stars-rating" aria-label="5 звёзд">
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="testimonial-text">«Пришла сюда чтобы понять его. А поняла себя. Это звучит как клише пока не проходишь — а потом понимаешь что именно так и происходит. Курс честный, глубокий и очень практичный.»</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" aria-hidden="true">К</div>
+            <div>
+              <div class="author-name">Катя, 34 года</div>
+              <div class="author-meta">После 8 лет брака</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       ЦЕНА
+  ══════════════════════════════ -->
+  <section class="pricing-section" id="buy">
+    <div class="container">
+      <div class="section-header fade-up" style="text-align:center;">
+        <p class="section-label">Инвестиция</p>
+        <h2 class="section-title">Один раз —<br><em class="serif-italic gold">навсегда</em></h2>
+      </div>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-badge">Полный доступ</div>
+
+        <h3 class="pricing-title">GAME LOVER</h3>
+        <p class="pricing-subtitle">Будь той кто знает правила игры</p>
+
+        <div class="pricing-price">
+          <span class="pricing-currency">₽</span>4 990
+        </div>
+        <p class="pricing-period">единоразовая оплата · доступ навсегда</p>
+
+        <ul class="pricing-features">
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            7 модулей — полная карта его психики
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Практики с ChatGPT в каждом модуле
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Видео-бонус — Сексуальный заряд
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Персональная карта игрока
+          </li>
+          <li>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            Доступ сразу после оплаты
+          </li>
+        </ul>
+
+        <a href="#buy" class="btn-gold" style="width:100%; justify-content:center; font-size:1rem; padding:20px 40px;">
+          <span>Купить за 4 990 ₽</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <p class="pricing-note">Безопасная оплата · Мгновенный доступ</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       FAQ
+  ══════════════════════════════ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header fade-up" style="text-align:center;">
+        <p class="section-label">Вопросы</p>
+        <h2 class="section-title">Часто<br><em class="serif-italic gold">спрашивают</em></h2>
+      </div>
+
+      <div class="faq-list" role="list">
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Подойдёт ли курс если у меня нет партнёра сейчас?</span>
+            <div class="faq-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Да. Курс — это прежде всего понимание механики. Женщины которые проходят его без партнёра говорят что начинают иначе смотреть на мужчин вокруг — и иначе выбирать. Это фундамент который работает в любых отношениях.</div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Сколько времени нужно на прохождение?</span>
+            <div class="faq-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Курс можно пройти за один вечер — он написан плотно и без воды. Но практики рассчитаны на несколько дней: ты будешь наблюдать, делать ходы, замечать реакции. Многие возвращаются к модулям снова через месяц — и видят новое.</div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Это манипуляции?</span>
+            <div class="faq-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Нет. Манипуляция — это скрытое давление против воли другого. Это — знание. Понимание того как работает психика мужчины позволяет не давить а создавать пространство где оба чувствуют себя лучше. Это не про обман — это про осознанность.</div>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Как получить доступ после оплаты?</span>
+            <div class="faq-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </button>
+          <div class="faq-a" role="region">
+            <div class="faq-a-inner">Сразу после оплаты ты получаешь ссылку на материалы — на почту или в Telegram (в зависимости от способа покупки). Доступ бессрочный — ты можешь возвращаться в любой момент.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       FOOTER
+  ══════════════════════════════ -->
+  <footer>
+    <div class="footer-logo">GAME LOVER</div>
+    <p class="footer-copy">© 2025 · Будь той кто знает правила игры</p>
+  </footer>
+
+
+  <!-- ══════════════════════════════
+       JS
+  ══════════════════════════════ -->
+  <script>
+    // FAQ accordion
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          // stagger siblings
+          const siblings = entry.target.parentElement.querySelectorAll('.fade-up');
+          let delay = 0;
+          siblings.forEach(sib => {
+            if (sib === entry.target) {
+              entry.target.style.transitionDelay = delay + 'ms';
+            }
+          });
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    // Stagger children in grids
+    document.querySelectorAll('.pain-grid, .modules-list, .testimonials-grid').forEach(grid => {
+      const items = grid.querySelectorAll('.fade-up');
+      items.forEach((item, i) => {
+        item.style.transitionDelay = (i * 80) + 'ms';
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
