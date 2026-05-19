@@ -35,6 +35,81 @@
       overflow-x: hidden;
     }
 
+    /* ─── GLOBAL BACKGROUND ORBS ─── */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      animation: orbFloat 18s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(212,104,138,0.18) 0%, transparent 70%);
+      top: -10%; left: -15%;
+      animation-duration: 20s;
+      animation-delay: 0s;
+    }
+    .orb-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(180,70,110,0.14) 0%, transparent 70%);
+      top: 30%; right: -10%;
+      animation-duration: 25s;
+      animation-delay: -8s;
+    }
+    .orb-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(232,154,181,0.12) 0%, transparent 70%);
+      bottom: 20%; left: 20%;
+      animation-duration: 22s;
+      animation-delay: -4s;
+    }
+    .orb-4 {
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(212,104,138,0.1) 0%, transparent 70%);
+      top: 60%; right: 25%;
+      animation-duration: 28s;
+      animation-delay: -12s;
+    }
+    .orb-5 {
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(255,130,160,0.1) 0%, transparent 70%);
+      top: 80%; left: 60%;
+      animation-duration: 16s;
+      animation-delay: -6s;
+    }
+
+    @keyframes orbFloat {
+      0%   { opacity: 0;    transform: translate(0px, 0px) scale(1); }
+      10%  { opacity: 1; }
+      50%  { opacity: 1;    transform: translate(40px, -60px) scale(1.15); }
+      90%  { opacity: 1; }
+      100% { opacity: 0;    transform: translate(0px, 0px) scale(1); }
+    }
+
+    /* grain texture overlay */
+    .bg-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* make all sections sit above the orbs */
+    section, footer { position: relative; z-index: 2; }
+
     /* ─── TYPOGRAPHY ─── */
     h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
 
@@ -770,6 +845,16 @@
   </style>
 </head>
 <body>
+
+  <!-- background -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="orb orb-4"></div>
+    <div class="orb orb-5"></div>
+  </div>
+  <div class="bg-grain" aria-hidden="true"></div>
 
   <!-- ══════════════════════════════
        HERO
