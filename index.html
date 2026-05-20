@@ -136,6 +136,60 @@
       100% { transform: translateY(-105vh) translateX(-10px); opacity: 0;  }
     }
 
+    /* ─── STICKY COUNTER WIDGET ─── */
+    .tigress-widget {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 100;
+      background: rgba(15,15,15,0.92);
+      border: 1px solid var(--gold-border);
+      border-radius: 14px;
+      padding: 16px 22px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 40px rgba(212,104,138,0.2);
+      text-align: center;
+      min-width: 160px;
+      animation: widgetIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes widgetIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.9); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .tigress-widget-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .tigress-widget-count {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+
+    .tigress-widget-count.bump {
+      transform: scale(1.18);
+    }
+
+    .tigress-widget-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .tigress-widget-sub span {
+      color: var(--gold);
+    }
+
     /* grain texture overlay */
     .bg-grain {
       position: fixed;
@@ -1112,6 +1166,13 @@
   </div>
   <div class="bg-grain" aria-hidden="true"></div>
 
+  <!-- sticky counter widget -->
+  <div class="tigress-widget" aria-live="polite">
+    <p class="tigress-widget-label">Уже внутри</p>
+    <div class="tigress-widget-count" id="widget-count">47</div>
+    <p class="tigress-widget-sub"><span>тигриц</span> 🐯</p>
+  </div>
+
   <!-- floating hearts -->
   <div class="hearts" aria-hidden="true">
     <span class="heart h1">♥</span>
@@ -1655,15 +1716,35 @@
       tick();
     })();
 
-    // ─── BUYERS COUNTER (+1 every 5 seconds) ───
+    // ─── STICKY WIDGET COUNTER (persistent, +1 every 2.5s) ───
     (function() {
-      const el = document.getElementById('buyers-count');
-      if (!el) return;
-      let count = parseInt(el.textContent);
+      const STORE_KEY = 'tigress_count';
+      const START     = 47;
+      const widgetEl  = document.getElementById('widget-count');
+      const inlineEl  = document.getElementById('buyers-count');
+
+      // restore saved count (never go below START)
+      let count = parseInt(localStorage.getItem(STORE_KEY)) || START;
+      if (count < START) count = START;
+
+      function update() {
+        if (widgetEl) widgetEl.textContent = count;
+        if (inlineEl) inlineEl.textContent = count;
+        localStorage.setItem(STORE_KEY, count);
+      }
+
+      update();
+
       setInterval(() => {
         count++;
-        el.textContent = count;
-      }, 5000);
+        update();
+
+        // bump animation on widget
+        if (widgetEl) {
+          widgetEl.classList.add('bump');
+          setTimeout(() => widgetEl.classList.remove('bump'), 300);
+        }
+      }, 2500);
     })();
 
     // FAQ accordion
