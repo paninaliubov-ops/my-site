@@ -392,48 +392,100 @@
     /* ─── PAIN SECTION ─── */
     .pain-section { background: var(--bg2); }
 
+    .pain-group {
+      margin-bottom: 56px;
+    }
+
+    .pain-group-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-border);
+      padding: 7px 18px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
     .pain-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: 16px;
     }
 
     .pain-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 36px 32px;
-      transition: border-color 0.25s, background 0.25s;
+      border-radius: 10px;
+      padding: 30px 28px;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
       cursor: default;
     }
 
     .pain-card:hover {
       border-color: var(--gold-border);
-      background: rgba(212,104,138,0.05);
+      background: rgba(212,104,138,0.06);
+      transform: translateY(-2px);
     }
 
     .pain-number {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--gold-dim);
       line-height: 1;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: block;
     }
 
     .pain-card h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 1.1rem;
+      font-weight: 600;
       margin-bottom: 10px;
       line-height: 1.4;
+      color: var(--white);
     }
 
     .pain-card p {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--muted);
-      line-height: 1.65;
+      line-height: 1.7;
+    }
+
+    .pain-conclusion {
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 40px 44px;
+      background: rgba(212,104,138,0.05);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .pain-conclusion p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .pain-conclusion p strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .pain-conclusion .tigress {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
     }
 
     /* ─── MODULES ─── */
@@ -948,34 +1000,79 @@
   ══════════════════════════════ -->
   <section class="pain-section">
     <div class="container">
+
       <div class="section-header fade-up">
-        <p class="section-label">Узнаёшь себя?</p>
-        <h2 class="section-title">Что-то идёт<br><em class="serif-italic gold">не так</em></h2>
-        <p class="section-desc">Ты чувствуешь что между вами есть что-то важное — но не можешь это назвать.</p>
+        <p class="section-label">Стоп</p>
+        <h2 class="section-title">Это про тебя?</h2>
+        <p class="section-desc">Если хоть одно из этого про тебя — ты здесь не случайно.</p>
       </div>
 
-      <div class="pain-grid">
-        <div class="pain-card fade-up">
-          <span class="pain-number" aria-hidden="true">01</span>
-          <h3>Он отдаляется — ты не понимаешь почему</h3>
-          <p>Всё вроде нормально. Но он где-то не здесь. В телефоне, в работе, в тишине.</p>
-        </div>
-        <div class="pain-card fade-up">
-          <span class="pain-number" aria-hidden="true">02</span>
-          <h3>Вы ссоритесь об одном и том же по кругу</h3>
-          <p>Один и тот же сценарий — каждый раз. Слова разные, суть та же.</p>
-        </div>
-        <div class="pain-card fade-up">
-          <span class="pain-number" aria-hidden="true">03</span>
-          <h3>Ты чувствуешь что стала предсказуемой</h3>
-          <p>Он знает как ты отреагируешь на всё. Интерес угасает — не к тебе, к динамике.</p>
-        </div>
-        <div class="pain-card fade-up">
-          <span class="pain-number" aria-hidden="true">04</span>
-          <h3>Притяжение есть, но электричество угасло</h3>
-          <p>Любовь осталась. А вот тот огонь, то напряжение — куда-то исчез.</p>
+      <!-- Группа 1 -->
+      <div class="pain-group">
+        <div class="pain-group-label fade-up">Если ты в паре</div>
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">01</span>
+            <h3>Он рядом — но его как будто нет?</h3>
+            <p>Физически здесь. Но где-то далеко. В телефоне, в работе, в тишине. И ты не знаешь как достучаться.</p>
+          </div>
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">02</span>
+            <h3>Ты сильная. Но устала быть мужиком в отношениях?</h3>
+            <p>Ты тянешь всё. А хочется наконец раствориться в мужчине — не держать мир на плечах.</p>
+          </div>
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">03</span>
+            <h3>То горячий то холодный — и ты уже не знаешь кто ты в этих качелях?</h3>
+            <p>Когда хорошо — ты на вершине. Когда холодный — падаешь. Эти качели разрушают.</p>
+          </div>
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">04</span>
+            <h3>Между вами всё есть. Но страсти — нет?</h3>
+            <p>Любовь есть. Быт есть. А тот огонь, то безумие — куда-то исчез. И непонятно как вернуть.</p>
+          </div>
         </div>
       </div>
+
+      <!-- Группа 2 -->
+      <div class="pain-group">
+        <div class="pain-group-label fade-up">Если ты свободна</div>
+        <div class="pain-grid">
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">05</span>
+            <h3>Почему умная, красивая — и одна?</h3>
+            <p>Всё при тебе. А рядом не тот. Или никого. И ты не понимаешь что идёт не так.</p>
+          </div>
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">06</span>
+            <h3>Он подсадил тебя на себя — и исчез в своей жизни?</h3>
+            <p>Ты думаешь о нём постоянно. Он — нет. И это бесит и разрушает одновременно.</p>
+          </div>
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">07</span>
+            <h3>Ты даёшь всё. В ответ — "мне нужно время"?</h3>
+            <p>Ты открытая. Заботливая. Стараешься. А он всё равно уходит. Снова. По кругу.</p>
+          </div>
+          <div class="pain-card fade-up">
+            <span class="pain-number" aria-hidden="true">08</span>
+            <h3>Он онлайн. Но тебе не пишет?</h3>
+            <p>Лайкает чужие сторис. Видел сообщение. Молчит. И ты сходишь с ума от догадок.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Вывод -->
+      <div class="pain-conclusion fade-up">
+        <p>
+          Это не про тебя.<br>
+          Это про то что <strong>мужчин никто не объяснял.</strong><br>
+          Ни в школе. Ни дома. Нигде.<br><br>
+          Пока одни догадываются —<br>
+          <strong>тигрицы знают.</strong>
+        </p>
+        <span class="tigress">🐯</span>
+      </div>
+
     </div>
   </section>
 
