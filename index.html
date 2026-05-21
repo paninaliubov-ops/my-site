@@ -109,11 +109,13 @@
       position: absolute;
       bottom: -40px;
       opacity: 0;
-      font-style: normal;
-      line-height: 1;
+      line-height: 0;
       animation: heartRise linear infinite;
       user-select: none;
+      display: inline-block;
     }
+
+    .heart svg { width: 1em; height: 1em; display: block; }
 
     .h1  { left:  5%; font-size:12px; color:rgba(212,104,138,0.55); animation-duration:12s; animation-delay:-2s;  }
     .h2  { left: 13%; font-size:20px; color:rgba(232,154,181,0.45); animation-duration:16s; animation-delay:-6s;  }
@@ -326,11 +328,13 @@
     }
 
     .hero-title {
-      font-size: clamp(4rem, 14vw, 11rem);
+      font-size: clamp(2.8rem, 11vw, 9rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 0.95;
       margin-bottom: 24px;
+      word-break: break-word;
+      hyphens: none;
       background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 40%, var(--gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -1240,6 +1244,31 @@
     }
 
     @media (max-width: 700px) {
+      .tigress-widget {
+        bottom: 12px;
+        right: 12px;
+        padding: 10px 14px;
+        min-width: 0;
+        border-radius: 12px;
+        border-width: 1.5px;
+      }
+      .tigress-widget-label {
+        font-size: 8px;
+        letter-spacing: 0.15em;
+        margin-bottom: 2px;
+      }
+      .tigress-widget-count {
+        font-size: 1.5rem;
+      }
+      .tigress-widget-sub {
+        font-size: 10px;
+      }
+      .tigress-widget-sub .svg-em { width: 14px; height: 14px; }
+
+      .hero-title { font-size: clamp(2.2rem, 13vw, 4rem); }
+      .hero-inner { padding: 60px 16px 100px; }
+      .hero-sub br { display: none; }
+      section { padding: 64px 0; }
       section { padding: 72px 0; }
       .pain-grid { grid-template-columns: 1fr; }
       .module-item { grid-template-columns: 56px 1fr; }
@@ -1278,18 +1307,18 @@
 
   <!-- floating hearts -->
   <div class="hearts" aria-hidden="true">
-    <span class="heart h1">♥</span>
-    <span class="heart h2">♥</span>
-    <span class="heart h3">♥</span>
-    <span class="heart h4">♥</span>
-    <span class="heart h5">♥</span>
-    <span class="heart h6">♥</span>
-    <span class="heart h7">♥</span>
-    <span class="heart h8">♥</span>
-    <span class="heart h9">♥</span>
-    <span class="heart h10">♥</span>
-    <span class="heart h11">♥</span>
-    <span class="heart h12">♥</span>
+    <span class="heart h1"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h2"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h3"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h6"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h7"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h8"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h9"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h10"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h11"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
+    <span class="heart h12"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7-4.5-9.5-9C.5 8 3 4 7 4c2 0 3.5 1 5 3 1.5-2 3-3 5-3 4 0 6.5 4 4.5 8-2.5 4.5-9.5 9-9.5 9z"/></svg></span>
   </div>
 
   <!-- ══════════════════════════════
