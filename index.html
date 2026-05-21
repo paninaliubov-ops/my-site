@@ -568,31 +568,35 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 280px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 56px;
       align-items: center;
     }
 
     .about-photo {
       width: 100%;
-      aspect-ratio: 1/1;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(212,104,138,0.25) 0%, rgba(15,15,15,0.6) 100%);
+      aspect-ratio: 4/5;
+      border-radius: 18px;
       border: 1px solid var(--gold-border);
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-shadow: 0 20px 60px rgba(212,104,138,0.2);
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
     }
 
     .about-photo::after {
-      content: 'ЛП';
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: -0.02em;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(10,10,10,0.4) 100%);
+      pointer-events: none;
     }
 
     .about-content h3 {
@@ -649,7 +653,7 @@
 
     @media (max-width: 800px) {
       .about-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
-      .about-photo { max-width: 220px; margin: 0 auto; }
+      .about-photo { max-width: 320px; margin: 0 auto; }
       .about-stats { justify-content: center; }
       .about-closing { justify-content: center; flex-wrap: wrap; }
     }
@@ -1598,7 +1602,9 @@
       </div>
 
       <div class="about-grid">
-        <div class="about-photo fade-up" aria-hidden="true"></div>
+        <div class="about-photo fade-up">
+          <img src="images/lyubov.jpg" alt="Любовь Панина — автор практикума" loading="lazy" />
+        </div>
 
         <div class="about-content fade-up">
           <h3>Любовь Панина</h3>
