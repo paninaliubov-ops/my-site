@@ -142,14 +142,13 @@
       bottom: 28px;
       right: 28px;
       z-index: 100;
-      background: rgba(15,15,15,0.92);
-      border: 1px solid var(--gold-border);
-      border-radius: 14px;
-      padding: 16px 22px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 8px 40px rgba(212,104,138,0.2);
+      background: linear-gradient(135deg, #E89AB5 0%, #D4688A 100%);
+      border: 2px solid #0A0A0A;
+      border-radius: 16px;
+      padding: 18px 26px;
+      box-shadow: 0 12px 40px rgba(212,104,138,0.45), 0 4px 12px rgba(0,0,0,0.3);
       text-align: center;
-      min-width: 160px;
+      min-width: 180px;
       animation: widgetIn 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
       animation-delay: 1.5s;
     }
@@ -161,34 +160,43 @@
 
     .tigress-widget-label {
       font-size: 10px;
-      letter-spacing: 0.2em;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 6px;
+      color: #0A0A0A;
+      margin-bottom: 4px;
+      opacity: 0.7;
     }
 
     .tigress-widget-count {
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
+      font-size: 2.4rem;
       font-weight: 700;
       line-height: 1;
-      color: var(--gold-light);
+      color: #0A0A0A;
       margin-bottom: 4px;
-      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+      transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1);
     }
 
     .tigress-widget-count.bump {
-      transform: scale(1.18);
+      transform: scale(1.22);
     }
 
     .tigress-widget-sub {
-      font-size: 11px;
-      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      color: #0A0A0A;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .tigress-widget-sub span {
-      color: var(--gold);
-    }
+    .tigress-widget-sub .svg-em path,
+    .tigress-widget-sub .svg-em ellipse,
+    .tigress-widget-sub .svg-em circle { stroke: #0A0A0A; }
+    .tigress-widget-sub .svg-em ellipse,
+    .tigress-widget-sub .svg-em circle { fill: rgba(0,0,0,0.12); }
 
     /* grain texture overlay */
     .bg-grain {
@@ -545,6 +553,97 @@
     /* ─── SVG ICONS ─── */
     .svg-block { display:block; margin:0 auto 4px; }
     .svg-em    { display:inline-block; vertical-align:middle; margin-left:6px; flex-shrink:0; }
+
+    /* ─── ABOUT SPEAKER ─── */
+    .about-section { background: var(--bg); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(212,104,138,0.25) 0%, rgba(15,15,15,0.6) 100%);
+      border: 1px solid var(--gold-border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-photo::after {
+      content: 'ЛП';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: -0.02em;
+    }
+
+    .about-content h3 {
+      font-size: 2.2rem;
+      margin-bottom: 8px;
+    }
+
+    .about-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .about-content p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .about-content p:last-child { margin-bottom: 0; }
+
+    .about-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 28px 0 32px;
+    }
+
+    .about-stat {
+      background: rgba(212,104,138,0.08);
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .about-closing {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--white);
+      padding-top: 24px;
+      border-top: 1px solid var(--card-border);
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .about-photo { max-width: 220px; margin: 0 auto; }
+      .about-stats { justify-content: center; }
+      .about-closing { justify-content: center; flex-wrap: wrap; }
+    }
 
     /* ─── HOW IT WORKS ─── */
     .how-section { background: var(--bg); }
@@ -1200,19 +1299,19 @@
     <div class="stars" aria-hidden="true"></div>
 
     <div class="hero-inner">
-      <div class="hero-eyebrow">Мини-курс для женщин</div>
+      <div class="hero-eyebrow">ИИ-практикум для женщин</div>
 
-      <h1 class="hero-title">GAME<br>LOVER</h1>
+      <h1 class="hero-title">ИГРА<br>ЛЮБОВНИЦЫ</h1>
 
       <p class="hero-tagline">Будь той кто знает правила игры</p>
 
       <p class="hero-sub">
-        Курс для женщин которые хотят понимать мужчину<br>
-        глубже чем он понимает себя сам
+        Практикум с понятным результатом под тебя.<br>
+        За один вечер узнаешь про мужчину то что он сам про себя не знает.
       </p>
 
       <a href="#buy" class="btn-gold">
-        <span>Купить за 4 990 ₽</span>
+        <span>Узнать правила</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -1314,7 +1413,7 @@
       <div class="section-header fade-up" style="text-align:center;">
         <p class="section-label">Формат</p>
         <h2 class="section-title">Никакой писанины.<br><em class="serif-italic gold">Никаких домашних заданий.</em></h2>
-        <p class="section-desc" style="margin:0 auto;">Садишься вечером с телефоном — и через 10 минут знаешь про своего мужчину то что он сам про себя не знает.</p>
+        <p class="section-desc" style="margin:0 auto;">Садишься вечером с телефоном — и за один вечер узнаёшь про своего мужчину то что он сам про себя не знает.</p>
       </div>
 
       <div class="how-steps">
@@ -1447,8 +1546,47 @@
       </div>
 
       <p class="fade-up" style="text-align:center; margin-top:40px; font-size:0.9rem; color:var(--muted); max-width:560px; margin-left:auto; margin-right:auto;">
-        Курс подходит для женщин в отношениях и свободных. Потому что мужчины устроены очень просто.
+        Практикум подходит и тем кто в отношениях, и свободным. Потому что мужчины устроены очень просто.
       </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════
+       О СПИКЕРЕ
+  ══════════════════════════════ -->
+  <section class="about-section">
+    <div class="container">
+      <div class="section-header fade-up" style="text-align:center;">
+        <p class="section-label">О спикере</p>
+        <h2 class="section-title">Кто ведёт<br><em class="serif-italic gold">практикум</em></h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-photo fade-up" aria-hidden="true"></div>
+
+        <div class="about-content fade-up">
+          <h3>Любовь Панина</h3>
+          <p class="about-tagline">Я знаю что работает.</p>
+
+          <p>Сексолог. Тантра. <strong>10 лет</strong> работы с женщинами — <strong>100+ мероприятий</strong>, <strong>1000+ женщин</strong> которые пришли с болью и ушли тигрицами.</p>
+          <p>Среди них — известные предприниматели которые доверяют мне самое личное.</p>
+          <p>За плечами <strong>13 лет брака</strong>. Всё что бывает внутри пары — знаю изнутри.</p>
+          <p>Сейчас в Таиланде. С мужчиной моложе на 8 лет — уже 3 года. Огонь только разгорается.</p>
+
+          <div class="about-stats">
+            <div class="about-stat">10 лет практики</div>
+            <div class="about-stat">100+ мероприятий</div>
+            <div class="about-stat">1000+ женщин</div>
+            <div class="about-stat">13 лет брака</div>
+          </div>
+
+          <p class="about-closing">
+            Тигрицами не рождаются. Становятся.
+            <svg class="svg-em" width="26" height="26" viewBox="0 0 48 48" fill="none" stroke="#D4688A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="24" cy="34" rx="11" ry="10" fill="rgba(212,104,138,0.12)"/><circle cx="12" cy="21" r="5" fill="rgba(212,104,138,0.12)"/><circle cx="24" cy="15" r="5" fill="rgba(212,104,138,0.12)"/><circle cx="36" cy="21" r="5" fill="rgba(212,104,138,0.12)"/></svg>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1624,11 +1762,11 @@
       <div class="faq-list" role="list">
         <div class="faq-item" role="listitem">
           <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
-            <span>Подойдёт ли курс если у меня нет партнёра?</span>
+            <span>Подойдёт ли практикум если у меня нет партнёра?</span>
             <div class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
           </button>
           <div class="faq-a" role="region">
-            <div class="faq-a-inner">Да. Курс для всех женщин — в отношениях и свободных. Мужчины устроены одинаково независимо от того есть он рядом или только появляется.</div>
+            <div class="faq-a-inner">Да. Практикум для всех женщин — в отношениях и свободных. Мужчины устроены одинаково независимо от того есть он рядом или только появляется.</div>
           </div>
         </div>
 
@@ -1658,7 +1796,7 @@
             <div class="faq-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#D4688A" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></div>
           </button>
           <div class="faq-a" role="region">
-            <div class="faq-a-inner">Курс можно пройти за один вечер. Некоторые проходят за ночь, некоторые растягивают на неделю. Доступ навсегда — в своём темпе.</div>
+            <div class="faq-a-inner">Практикум проходится за один вечер. Некоторые проходят за ночь, некоторые растягивают на неделю. Доступ навсегда — в своём темпе.</div>
           </div>
         </div>
 
@@ -1720,16 +1858,18 @@
       tick();
     })();
 
-    // ─── STICKY WIDGET COUNTER (persistent, +1 every 2.5s) ───
+    // ─── STICKY WIDGET COUNTER ───
+    // Starts at 47. +10 on every page load. +1 every 4 seconds. Persistent.
     (function() {
       const STORE_KEY = 'tigress_count';
       const START     = 47;
       const widgetEl  = document.getElementById('widget-count');
       const inlineEl  = document.getElementById('buyers-count');
 
-      // restore saved count (never go below START)
-      let count = parseInt(localStorage.getItem(STORE_KEY)) || START;
-      if (count < START) count = START;
+      // restore saved count or start fresh
+      let count = parseInt(localStorage.getItem(STORE_KEY));
+      if (!count || count < START) count = START;
+      else count += 10; // +10 each new visit/refresh
 
       function update() {
         if (widgetEl) widgetEl.textContent = count;
@@ -1737,18 +1877,20 @@
         localStorage.setItem(STORE_KEY, count);
       }
 
+      function bump() {
+        if (!widgetEl) return;
+        widgetEl.classList.add('bump');
+        setTimeout(() => widgetEl.classList.remove('bump'), 300);
+      }
+
       update();
+      bump();
 
       setInterval(() => {
         count++;
         update();
-
-        // bump animation on widget
-        if (widgetEl) {
-          widgetEl.classList.add('bump');
-          setTimeout(() => widgetEl.classList.remove('bump'), 300);
-        }
-      }, 2500);
+        bump();
+      }, 4000);
     })();
 
     // FAQ accordion
