@@ -606,7 +606,7 @@
 
     .about-photo {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 1/1;
       border-radius: 12px;
       position: relative;
       overflow: hidden;
@@ -616,39 +616,26 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 30% 30%;
+      object-position: 62% 35%;
       display: block;
       transition: transform 1.2s ease;
     }
 
     .about-photo-wrap:hover .about-photo img { transform: scale(1.04); }
 
-    /* duality overlay — subtle vignette + center gold seam */
+    /* subtle vignette on sides */
     .about-photo::after {
       content: '';
       position: absolute;
       inset: 0;
       background:
         linear-gradient(90deg,
-          rgba(10,10,10,0.45) 0%,
-          transparent 18%,
-          transparent 82%,
-          rgba(10,10,10,0.45) 100%),
-        linear-gradient(180deg, transparent 75%, rgba(10,10,10,0.35) 100%);
+          rgba(10,10,10,0.4) 0%,
+          transparent 14%,
+          transparent 86%,
+          rgba(10,10,10,0.4) 100%),
+        linear-gradient(180deg, transparent 75%, rgba(10,10,10,0.45) 100%);
       pointer-events: none;
-    }
-
-    /* thin vertical seam evoking "two halves" — animated shimmer */
-    .about-photo::before {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      left: 50%;
-      width: 1px;
-      background: linear-gradient(180deg, transparent 0%, rgba(232,154,181,0.55) 50%, transparent 100%);
-      transform: translateX(-0.5px);
-      pointer-events: none;
-      opacity: 0.5;
     }
 
     /* label below image */
