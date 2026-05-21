@@ -328,17 +328,22 @@
     }
 
     .hero-title {
-      font-size: clamp(2.8rem, 11vw, 9rem);
+      font-size: clamp(2.4rem, 8.5vw, 6.5rem);
       font-weight: 700;
       letter-spacing: -0.02em;
-      line-height: 0.95;
+      line-height: 1;
       margin-bottom: 24px;
-      word-break: break-word;
-      hyphens: none;
       background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.8) 40%, var(--gold) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    .hero-price-note {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
     }
 
     .hero-tagline {
@@ -1265,7 +1270,6 @@
       }
       .tigress-widget-sub .svg-em { width: 14px; height: 14px; }
 
-      .hero-title { font-size: clamp(2.2rem, 13vw, 4rem); }
       .hero-inner { padding: 60px 16px 100px; }
       .hero-sub br { display: none; }
       section { padding: 64px 0; }
@@ -1335,14 +1339,16 @@
       <p class="hero-tagline">Будь той кто знает правила игры</p>
 
       <p class="hero-sub">
-        Практикум с понятным результатом под тебя.<br>
-        За один вечер узнаешь про мужчину то что он сам про себя не знает.
+        За один вечер узнаешь про мужчину<br>
+        то что он сам про себя не знает.
       </p>
 
       <a href="#buy" class="btn-gold">
         <span>Узнать правила</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
+
+      <p class="hero-price-note">от 1 990 ₽</p>
     </div>
 
     <div class="scroll-hint" aria-hidden="true">
