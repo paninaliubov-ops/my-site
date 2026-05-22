@@ -239,7 +239,12 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,104,138,0.12) 0%, transparent 60%), var(--bg);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 30%, rgba(10,10,10,0.8) 70%, rgba(10,10,10,1) 100%),
+        url('images/hero-tigress.jpg') center/cover no-repeat,
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,104,138,0.12) 0%, transparent 60%),
+        var(--bg);
+      background-attachment: fixed;
     }
 
     .stars {
@@ -366,36 +371,7 @@
 
     /* ─── HERO IMAGE ─── */
     .hero-image {
-      position: absolute;
-      right: -100px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 500px;
-      height: 600px;
-      z-index: 1;
-      opacity: 0;
-      animation: slideInRight 1.2s ease-out 0.4s forwards;
-      pointer-events: none;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 40px 80px rgba(212, 104, 138, 0.25), 0 20px 40px rgba(212, 104, 138, 0.15);
-      filter: brightness(1.05);
-    }
-
-    @keyframes slideInRight {
-      0% {
-        opacity: 0;
-        transform: translateY(-50%) translateX(100px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(-50%) translateX(0);
-      }
+      display: none;
     }
 
     .scroll-hint {
@@ -1368,11 +1344,6 @@
       .how-steps { grid-template-columns: 1fr; }
     }
 
-    @media (min-width: 701px) and (max-width: 900px) {
-      .hero-image { width: 280px !important; height: 340px !important; position: absolute !important; right: -40px !important; bottom: 80px !important; top: auto !important; transform: none !important; border-radius: 20px !important; }
-      .hero-image img { border-radius: 20px !important; }
-    }
-
     @media (max-width: 700px) {
       .tigress-widget {
         bottom: 12px;
@@ -1395,10 +1366,8 @@
       }
       .tigress-widget-sub .svg-em { width: 14px; height: 14px; }
 
-      .hero-inner { padding: 60px 16px 140px; }
+      .hero-inner { padding: 60px 16px 100px; }
       .hero-sub br { display: none; }
-      .hero-image { position: fixed !important; right: 0 !important; bottom: 0 !important; top: auto !important; transform: none !important; width: 160px !important; height: 190px !important; animation: none !important; opacity: 1 !important; border-radius: 16px 0 0 0; z-index: 1; }
-      .hero-image img { border-radius: 16px 0 0 0; }
       section { padding: 64px 0; }
       section { padding: 72px 0; }
       .pain-grid { grid-template-columns: 1fr; }
