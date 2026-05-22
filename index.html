@@ -367,14 +367,15 @@
     /* ─── HERO IMAGE ─── */
     .hero-image {
       position: absolute;
-      right: -50px;
+      right: -100px;
       top: 50%;
       transform: translateY(-50%);
-      width: 450px;
-      height: 550px;
+      width: 500px;
+      height: 600px;
       z-index: 1;
       opacity: 0;
       animation: slideInRight 1.2s ease-out 0.4s forwards;
+      pointer-events: none;
     }
 
     .hero-image img {
@@ -1365,6 +1366,7 @@
 
     @media (max-width: 900px) {
       .how-steps { grid-template-columns: 1fr; }
+      .hero-image { display: none !important; }
     }
 
     @media (max-width: 700px) {
@@ -1391,11 +1393,7 @@
 
       .hero-inner { padding: 60px 16px 100px; }
       .hero-sub br { display: none; }
-      .hero-image { position: relative; right: auto; top: auto; transform: none; width: 280px; height: 340px; margin: 0 auto 40px; animation: fadeInDown 1s ease-out; }
-      @keyframes fadeInDown {
-        0% { opacity: 0; transform: translateY(-30px); }
-        100% { opacity: 1; transform: translateY(0); }
-      }
+      .hero-image { display: none; }
       section { padding: 64px 0; }
       section { padding: 72px 0; }
       .pain-grid { grid-template-columns: 1fr; }
