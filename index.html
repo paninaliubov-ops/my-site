@@ -1366,7 +1366,11 @@
 
     @media (max-width: 900px) {
       .how-steps { grid-template-columns: 1fr; }
-      .hero-image { display: none !important; }
+    }
+
+    @media (min-width: 701px) and (max-width: 900px) {
+      .hero-image { width: 280px !important; height: 340px !important; position: absolute !important; right: -40px !important; bottom: 80px !important; top: auto !important; transform: none !important; border-radius: 20px !important; }
+      .hero-image img { border-radius: 20px !important; }
     }
 
     @media (max-width: 700px) {
@@ -1391,9 +1395,10 @@
       }
       .tigress-widget-sub .svg-em { width: 14px; height: 14px; }
 
-      .hero-inner { padding: 60px 16px 100px; }
+      .hero-inner { padding: 60px 16px 140px; }
       .hero-sub br { display: none; }
-      .hero-image { display: none; }
+      .hero-image { position: fixed !important; right: 0 !important; bottom: 0 !important; top: auto !important; transform: none !important; width: 160px !important; height: 190px !important; animation: none !important; opacity: 1 !important; border-radius: 16px 0 0 0; z-index: 1; }
+      .hero-image img { border-radius: 16px 0 0 0; }
       section { padding: 64px 0; }
       section { padding: 72px 0; }
       .pain-grid { grid-template-columns: 1fr; }
