@@ -1318,6 +1318,42 @@
       color: var(--muted);
     }
 
+    /* ─── LEGAL SECTION ─── */
+    .legal-section {
+      background: #050505;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .legal-info {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .legal-docs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 24px;
+    }
+
+    .legal-docs a {
+      font-size: 0.75rem;
+      color: rgba(212,104,138,0.6);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212,104,138,0.25);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .legal-docs a:hover {
+      color: #D4688A;
+      border-color: #D4688A;
+    }
+
     /* ─── SCROLL ANIMATIONS ─── */
     .fade-up {
       opacity: 0;
@@ -1992,6 +2028,19 @@
     <div class="footer-logo">ИГРА ЛЮБОВНИЦЫ</div>
     <p class="footer-copy">© 2025 · Овечка или Тигрица — кем ты выйдешь отсюда? <svg class="svg-em" width="22" height="22" viewBox="0 0 48 48" fill="none" stroke="#D4688A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="24" cy="34" rx="11" ry="10" fill="rgba(212,104,138,0.12)"/><circle cx="12" cy="21" r="5" fill="rgba(212,104,138,0.12)"/><circle cx="24" cy="15" r="5" fill="rgba(212,104,138,0.12)"/><circle cx="36" cy="21" r="5" fill="rgba(212,104,138,0.12)"/></svg></p>
   </footer>
+
+  <div class="legal-section">
+    <p class="legal-info">
+      Панина Любовь Евгеньевна · Самозанятый · ИНН: 344709580458<br>
+      <a href="mailto:paninaliubov@gmail.com" style="color:rgba(255,255,255,0.35);text-decoration:none;">paninaliubov@gmail.com</a>
+    </p>
+    <div class="legal-docs">
+      <a href="dogovor-oferta.pdf" target="_blank">Договор оферты</a>
+      <a href="politika-konfidentsialnosti.pdf" target="_blank">Политика конфиденциальности и обработки персональных данных</a>
+      <a href="soglasie-pd.pdf" target="_blank">Согласие на обработку персональных данных</a>
+      <a href="soglasie-rassylki.pdf" target="_blank">Согласие на получение рассылки</a>
+    </div>
+  </div>
 
 
   <!-- ══════════════════════════════
